@@ -1,6 +1,6 @@
 # vscode_running_time
 Vscode 运行时间统计
-
+![show](./show.png)
 ## 使用 
 
 点击start.bat启动VSCode，并进行使用时间的统计。
