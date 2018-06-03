@@ -1,6 +1,10 @@
 # vscode_running_time
 Vscode 运行时间统计
 
+## 使用 
+
+点击start.bat启动VSCode，并进行使用时间的统计。
+你可以给start.bat创建一个快捷方式放在桌面，代替VSCode。
 
 ## 设置
 在 start.bat找到
