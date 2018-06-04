@@ -43,24 +43,23 @@ const viewProcessMessage = async function (name, isMainCode, cb) {
 }
 
 const statistic = async function () {
-  // var NOWDATE = new Date().format("yyyy年MM月dd日hh时mm分");
-  var NOWDATE = new Date();
-  console.log(`VSCode launch at ${NOWDATE.format('yyyy年MM月dd日hh时mm分')}`);
-  NOWDATE = NOWDATE.getTime();
-  fs.writeFile('./last-launch', NOWDATE, { flag: 'w', encoding: 'utf-8' }, function (err, data) {
+  // var THIS_TIME_LAUNCH_DATE = new Date().format("yyyy年MM月dd日hh时mm分");
+  var THIS_TIME_LAUNCH_DATE = new Date();
+  console.log(`VSCode launch at ${THIS_TIME_LAUNCH_DATE.format('yyyy年MM月dd日hh时mm分')}`);
+  THIS_TIME_LAUNCH_DATE = THIS_TIME_LAUNCH_DATE.getTime();
+  fs.writeFile('./last-launch', THIS_TIME_LAUNCH_DATE, { flag: 'w', encoding: 'utf-8' }, function (err, data) {
     if (err) {
       console.log("err")
     } else {
       // console.log("文件写入成功");
-
     }
-
   });
 
-  var total_running_time = await readFile("./total-running-time", "utf-8") || 0;
-  var totalTime = parseInt(total_running_time);
+  var orign_total_running_time = await readFile("./total-running-time", "utf-8") || 0;
+  var totalTime = parseInt(orign_total_running_time);
   var recordTotalTimer = setInterval(async function () {
-    totalTime = parseInt(totalTime) + 1000 * 60;
+    var deviation = new Date().getTime() - THIS_TIME_LAUNCH_DATE;
+    totalTime = parseInt(orign_total_running_time) + deviation;
     fs.writeFile('./total-running-time', totalTime, { encoding: 'utf-8' }, function (err, data) {
       if (err) {
         console.log("err")
@@ -69,12 +68,15 @@ const statistic = async function () {
     });
 
   }, 1000 * 60)
+  // }, 1000 )
+
   var checkVSCodeALiveTimer = setInterval(function () {
     viewProcessMessage(PROCESS_NAME);
-  }, 1000)
+  }, 2000)
   var showTotalTimer = setInterval(function () {
     figureTotalTime(totalTime);
-  }, 1000 * 60 * 4)
+  }, 1000 * 60 *4)
+  // }, 1000 )
 
 }
 
