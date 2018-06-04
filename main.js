@@ -44,8 +44,9 @@ const viewProcessMessage = async function (name, isMainCode, cb) {
 
 const statistic = async function () {
   // var NOWDATE = new Date().format("yyyy年MM月dd日hh时mm分");
-  var NOWDATE = new Date().getTime();
-
+  var NOWDATE = new Date();
+  console.log(`VSCode launch at ${NOWDATE.format('yyyy年MM月dd日hh时mm分')}`);
+  NOWDATE = NOWDATE.getTime();
   fs.writeFile('./last-launch', NOWDATE, { flag: 'w', encoding: 'utf-8' }, function (err, data) {
     if (err) {
       console.log("err")
@@ -106,6 +107,7 @@ setTimeout(function () {
     //关闭匹配的进程
     // process.kill(msg)
     console.log("如果关闭了该命令行，或者关闭了VSCode，将不会统计使用时间");
+  
     fs.readFile("./total-running-time", "utf-8", function (err, data) {
       if (err) {
         console.log('err')

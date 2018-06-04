@@ -1,5 +1,5 @@
 # vscode_running_time
-Vscode 运行时间统计
+Vscode 运行时间统计。功能参考steam的游戏时间统计。
 ![show](./show.PNG)
 ## 使用 
 
