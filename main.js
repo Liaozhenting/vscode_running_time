@@ -45,7 +45,7 @@ const viewProcessMessage = async function (name, isMainCode, cb) {
 const statistic = async function () {
   // var THIS_TIME_LAUNCH_DATE = new Date().format("yyyy年MM月dd日hh时mm分");
   var THIS_TIME_LAUNCH_DATE = new Date();
-  console.log(`VSCode launch at ${THIS_TIME_LAUNCH_DATE.format('yyyy年MM月dd日hh时mm分')}`);
+  console.log(`本次运行开始： ${THIS_TIME_LAUNCH_DATE.format('yyyy年MM月dd日hh时mm分')}`);
   THIS_TIME_LAUNCH_DATE = THIS_TIME_LAUNCH_DATE.getTime();
   fs.writeFile('./last-launch', THIS_TIME_LAUNCH_DATE, { flag: 'w', encoding: 'utf-8' }, function (err, data) {
     if (err) {
@@ -86,7 +86,7 @@ function figureTotalTime(data) {
   //计算相差分钟数  
   var leave2 = leave1 % (3600 * 1000)
   var minutes = Math.floor(leave2 / (60 * 1000))
-  console.log(`Total Running Time:${hours} hours ${minutes} minutes`);
+  console.log(`运行总时间:${hours} hours ${minutes} minutes`);
 }
 
 const getLastLaunchDate = function () {
@@ -96,8 +96,8 @@ const getLastLaunchDate = function () {
         console.log('err')
         reject()
       } else {
-        console.log('Last Luanch Data:', new Date(parseInt(data)).format("yyyy年MM月dd日hh时mm分ss秒"));
-        console.log('Last Luanch Data:', new Date().ago(parseInt(data)));
+        console.log('上次启动时间:', new Date(parseInt(data)).format("yyyy年MM月dd日hh时mm分ss秒"));
+        console.log('距今:', new Date().ago(parseInt(data)));
         resolve()
       }
     });
@@ -109,6 +109,13 @@ setTimeout(function () {
     //关闭匹配的进程
     // process.kill(msg)
     console.log("如果关闭了该命令行，或者关闭了VSCode，将不会统计使用时间");
+    console.log("=================================================================");
+    console.log(`                                                                 `);
+    console.log(`                                                                 `);
+    console.log(`                                                                 `);
+    console.log(`                                                                 `);
+    console.log(`                                                                 `);
+    console.log(`                                                                 `);
   
     fs.readFile("./total-running-time", "utf-8", function (err, data) {
       if (err) {
