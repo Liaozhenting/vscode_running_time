@@ -7,10 +7,12 @@ Vscode 运行时间统计。功能参考steam的游戏时间统计。
 你可以给start.bat创建一个快捷方式放在桌面，代替VSCode。
 
 ## 设置
+
 在 start.bat找到
 ```
 start /d "D:\Program Files\Microsoft VS Code" Code.exe
 ```
+
 把`"D:\Program Files\Microsoft VS Code"`替换为本机vscode的安装路径；
 
 ## 初始化时间(默认是初始的，不用管这条)
